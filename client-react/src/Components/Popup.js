@@ -13,8 +13,8 @@ export default class Popup extends React.Component {
         this.props.closePopup();
         
         // Send pwd to API to get auth token, and display other popup
-        Axios.get('http://51.38.68.118:8080/auth?pwd='+pwd, { crossdomain: true }).then(function(response) {
-        //Axios.get('http://localhost:8080/auth?pwd='+pwd, { crossdomain: true }).then(function(response) {
+        //Axios.get('http://51.38.68.118:8080/auth?pwd='+pwd, { crossdomain: true }).then(function(response) {
+        Axios.get('http://localhost:8080/auth?pwd='+pwd, { crossdomain: true }).then(function(response) {
             console.log(response);
             if(response.data.status == 'OK') {
                 alert('Authenticated !');
