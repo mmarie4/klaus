@@ -1,0 +1,24 @@
+/node_modules
+
+# --------- ReactJS -----------
+# dependencies
+client-react//node_modules
+client-react/.pnp
+client-react/.pnp.js
+
+# testing
+client-react/coverage
+
+# production
+client-react/build
+
+# misc
+client-react/.DS_Store
+client-react/.env.local
+client-react/.env.development.local
+client-react/.env.test.local
+client-react/.env.production.local
+
+client-react/npm-debug.log*
+client-react/yarn-debug.log*
+client-react/yarn-error.log*
