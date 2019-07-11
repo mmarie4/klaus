@@ -3,7 +3,7 @@ pwd.txt
 
 # --------- ReactJS -----------
 # dependencies
-client-react//node_modules
+client-react/node_modules
 client-react/.pnp
 client-react/.pnp.js
 
