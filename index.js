@@ -3,7 +3,7 @@ var fs = require('fs');
 
 var app = express();
 
-var PASSWORD = fs.readFileSync('pwd.txt');
+var PASSWORD = fs.readFileSync('pwd.txt', 'utf8').trim();
 
 // Serve static folder
 app.use(express.static('client-react/build'));
