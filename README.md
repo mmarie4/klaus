@@ -13,5 +13,6 @@ ReactJS application in folder client-react.
 
 #### Back-end
 
-NodeJS with Express
+NodeJS with Express.
+
 Serve staticly the reactJS build.
