@@ -2,6 +2,16 @@
 
 Web application which estimate probabilities for football results.
 
-Front-end : ReactJS application in folder client-react
+#### Run
 
-Back-end : NodeJS with Express
+`npm run build` to build the folder from ReactJS project
+`npm start` to launch the server
+
+#### Front-end
+
+ReactJS application in folder client-react.
+
+#### Back-end
+
+NodeJS with Express
+Serve staticly the reactJS build.
