@@ -13,17 +13,36 @@ export default class Wrapper extends React.Component {
         super(props);
         this.state = {
             league: '',
-            isPopup: false
+            isPopup: false,
+            stats: [
+                ['Score', '0', '1', '2', '3', '4', '5'],
+                ['0', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
+                ['1', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
+                ['2', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
+                ['3', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
+                ['4', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
+                ['5', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
+            ]
         };
         this.openPopup = this.openPopup.bind(this);
         this.closePopup = this.closePopup.bind(this);
+        this.updateGrid = this.updateGrid.bind(this);
     }
 
     displayWrapper() {
         console.log(this.state.league);
         if(this.state.league !== '') {
-            return <ResultWrapper league={this.state.league}/>
+            return <ResultWrapper league={this.state.league} updateGrid={this.updateGrid}/>
         }
+    }
+
+    updateGrid(new_stats) {
+        var lines =  [];
+        lines.push(['Score', '0', '1', '2', '3', '4', '5']);
+        for(var i = 0; i < new_stats.length; i++) {
+            lines.push([i, new_stats[i][0], new_stats[i][1], new_stats[i][2], new_stats[i][3], new_stats[i][4], new_stats[i][5]]);
+        }
+        this.setState( { stats : lines } );
     }
 
     openPopup() {
@@ -46,7 +65,7 @@ export default class Wrapper extends React.Component {
                 <LockButton openPopup={this.openPopup}/>
                 {this.displayWrapper()}
                 {this.displayPopup()}
-                <GridStats/>
+                <GridStats stats={this.state.stats}/>
             </div>
         )
     }

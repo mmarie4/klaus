@@ -5,17 +5,6 @@ export default class GridStats extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            lines: [
-                ['Score', '0', '1', '2', '3', '4', '5'],
-                ['0', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
-                ['1', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
-                ['2', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
-                ['3', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
-                ['4', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
-                ['5', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
-            ]
-        }
     }
 
     getFirstLine() {
@@ -30,10 +19,10 @@ export default class GridStats extends React.Component {
     getGrid() {
         // Return array of lines
         var DOMGrid = [];
-        for(var i = 0; i < this.state.lines.length; i++) {
+        for(var i = 0; i < this.props.stats.length; i++) {
             var DOMLine = [];
-            for(var j = 0; j < this.state.lines[i].length; j++) {
-                DOMLine.push(<Tile value={this.state.lines[i][j]}></Tile>);
+            for(var j = 0; j < this.props.stats[i].length; j++) {
+                DOMLine.push(<Tile value={this.props.stats[i][j]}></Tile>);
             }
             DOMGrid.push(<div className='line'> {DOMLine} </div>);
         }
@@ -41,6 +30,8 @@ export default class GridStats extends React.Component {
     }
 
     render() {
+        console.log('rendering...');
+        console.log('lines:', this.props.stats);
         // Call get Grid to get all the lines
         return(
             <div id='grid-wrapper' className='grid-stats'>
