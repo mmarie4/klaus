@@ -43,7 +43,7 @@ export default class GridStats extends React.Component {
     render() {
         // Call get Grid to get all the lines
         return(
-            <div className='grid-stats'>
+            <div id='grid-wrapper' className='grid-stats'>
                 <p id='team1'>Team 1</p>
                 <p id='team2'>Team 2</p>
                 {this.getGrid()}

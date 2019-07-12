@@ -34,7 +34,7 @@ export default class Wrapper extends React.Component {
         this.setState( { league: this.state.league, isPopup: false} );
     }
     displayPopup() {
-        if(this.state.isPopup) return <Popup isPopup={this.isPopup} closePopup={this.closePopup}/>
+        if(this.state.isPopup) return <Popup isPopup={this.isPopup} closePopup={this.closePopup} league={this.state.league}/>
     }
 
     render() {

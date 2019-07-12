@@ -42,7 +42,7 @@ h1 {
   font-size: 80px;
   font-family: 'Fugaz One', cursive;
   font-weight: 700;
-  width: 100%;
+  width: calc(100% - 20px);
   margin: 0;
   margin-left: 20px;
   height: 90px;
@@ -192,7 +192,7 @@ option {
 
 #team2 {
   position: relative;
-  width: 10%;
+  width: 50px;
   height: 10%;
   font-weight: 700;
   font-size: 14px;
@@ -241,10 +241,25 @@ option {
   opacity: 1.0;
 }
 
+.score {
+  width: 30px;
+  margin-bottom: 50px;
+}
+
+.input-popup {
+  display: inline-block;
+  font-size: 10px;
+}
+
+#add-btn {
+  margin: 20px;
+}
+
 /* ----------------------------- Breakpoint for mobile phone ------------------------------- */
 @media all and (max-width: 768px) {
   .grid-stats {
     width: 100%;
+    margin-bottom: 50px;
   }
 
   .tile {
@@ -273,6 +288,14 @@ option {
     right: 5%;
     top: 2%;
   }
+
+  #team2 {
+    transform: translate(0, 150px) rotate(-90deg);
+  }
+
+}
+
+@media all and (max-width: 480px) {
 
 }
 
