@@ -11,6 +11,8 @@
   "author": "Max MARIE",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "data.js": "^0.12.8",
+    "express": "^4.17.1",
+    "stream-interceptor": "^0.1.1"
   }
 }
