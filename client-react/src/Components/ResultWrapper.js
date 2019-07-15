@@ -17,8 +17,8 @@ export default class ResultWrapper extends React.Component {
         if(team1 == 'Select a team...' || team2 == 'Select a team...') {
             alert('Please select teams before asking for predictions');
         } else {
-            Axios.get('http://51.38.68.118:8080/probabilities?team1='+team1+'&team2='+team2).then(function(response){
-            //Axios.get('http://localhost:8080/probabilities?team1='+team1+'&team2='+team2+'&league='+this.props.league).then(function(response){
+            Axios.get('http://51.38.68.118:80/probabilities?team1='+team1+'&team2='+team2+'&league='+this.props.league).then(function(response){
+            //Axios.get('http://localhost:80/probabilities?team1='+team1+'&team2='+team2+'&league='+this.props.league).then(function(response){
                 if(response.data.missing != undefined) {
                     alert(response.data.missing);
                 } else {
