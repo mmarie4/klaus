@@ -61,7 +61,7 @@ var initData = async function(league) {
           const file = dataset.resources[id]
           // Get a raw stream
           const stream = await file.stream();
-          stream.on('finish', () => {
+          stream.on('end', () => {
             return updateAtkDef(league);
           })
           const buffer = await file.buffer;
