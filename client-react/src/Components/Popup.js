@@ -19,7 +19,7 @@ export default class Popup extends React.Component {
             console.log(response);
             if(response.data.status == 'OK') {
                 // Go for update Popup
-                that.setState( { isLogged: true } );
+                that.setState( { isLogged: true , duration: response.data.time} );
             } else {
                 alert('Wrong password.');
             }
@@ -28,20 +28,7 @@ export default class Popup extends React.Component {
 
     displayContent() {
         if(this.state.isLogged) {
-            return (
-                <div>
-                    <p>You are logged as and admin, you can now update the database.</p>
-                    <div className='input-popup'>
-                        <TeamSelector value='Home' id='popup-select1' league={this.props.league}/>
-                        <input type='number' id='score1' className='score'></input>
-                    </div>
-                    <div classNmae='input-popup'>
-                        <TeamSelector value='Away' id='popup-select2' league={this.props.league}/>
-                        <input type='number' id='score2' className='score'></input>
-                    </div>
-                    <button className='primary-btn' id='add-btn'>Add</button>
-                </div>
-            )
+            return <div>The database has been updated and it took {this.state.time} seconds.</div>
         } else {
             return (
                 <div>

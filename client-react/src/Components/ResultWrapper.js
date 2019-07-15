@@ -18,9 +18,13 @@ export default class ResultWrapper extends React.Component {
             alert('Please select teams before asking for predictions');
         } else {
             Axios.get('http://51.38.68.118:8080/probabilities?team1='+team1+'&team2='+team2).then(function(response){
-            //Axios.get('http://localhost:8080/probabilities?team1='+team1+'&team2='+team2).then(function(response){
-                console.log('Stats:', response.data);
-                that.props.updateGrid(response.data);
+            //Axios.get('http://localhost:8080/probabilities?team1='+team1+'&team2='+team2+'&league='+this.props.league).then(function(response){
+                if(response.data.missing != undefined) {
+                    alert(response.data.missing);
+                } else {
+                    console.log('Stats:', response.data);
+                    that.props.updateGrid(response.data);
+                }
             });
         }
     }
@@ -28,8 +32,8 @@ export default class ResultWrapper extends React.Component {
     render() {
         return(
             <div className='result-wrapper'>
-                <TeamSelector value='Team 1' id='select1' league={this.props.league}/>
-                <TeamSelector value='Team 2' id='select2'league={this.props.league}/>
+                <TeamSelector value='Home team' id='select1' league={this.props.league}/>
+                <TeamSelector value='Away team' id='select2'league={this.props.league}/>
                 <button className='primary-btn' onClick={this.handleButton}>GET PREDICTIONS</button>
             </div>
         )

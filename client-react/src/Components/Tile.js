@@ -4,14 +4,14 @@ export default class Tile extends React.Component {
 
     constructor(props) {
         super(props);
-        this.style = {
-            background: 'grey'
+        this.state = {
+            value: props.value
         }
     }
 
     render() {
-        return(
-            <div className='tile' style={this.style}>
+        return (
+            <div className='tile' style={this.props.style}>
                 <p>{this.props.value}</p>
             </div>
         )

@@ -19,19 +19,21 @@ var KlausMath = {
     },
 
     poisson: function(lambda, X) {
-        Math.exp(-1 * lambda) * Math.pow(lambda, X) / fact(X);
+        return (Math.exp(-1 * lambda) * Math.pow(lambda, X) / this.fact(X));
     },
 
-    getGrid: function(team1ATK, team1DEF, team2ATK, team2DEF, avgGoalsHome, avgGoalsAway) {
+    getGrid: function(team1ATK, team1DEF, team2ATK, team2DEF) {
         var grid = [];
-        for(var i = 0; i < 5; i++ ){
+        for(var i = 0; i < 6; i++ ){
             grid[i] = [];
-            for(var j = 0; j < 5; j++) {
-                team1Esp = team1ATK * team2DEF * avgGoalsHome;
-                team2Esp = team2ATK * team1DEF * avgGoalsAway;
-                grid[i].push(poisson(team1Esp, j) * poisson(team2Esp, i));
+            for(var j = 0; j < 6; j++) {
+                team1Esp = team1ATK * team2DEF;
+                team2Esp = team2ATK * team1DEF;
+                var proba = this.poisson(team1Esp, j) * this.poisson(team2Esp, i) * 100;
+                grid[i].push(proba.toFixed(2) + ' %');
             }
         }
+        return grid;
     }
 }
 

@@ -61,7 +61,7 @@ export default class Wrapper extends React.Component {
         return(
             <div id='wrapper'>
                 <TitleBar/>
-                <NavigationBar setLeague={(s, c) => this.setState(s, c)}/>
+                <NavigationBar setLeague={(state, callback) => this.setState(state, callback)}/>
                 <LockButton openPopup={this.openPopup}/>
                 {this.displayWrapper()}
                 {this.displayPopup()}
