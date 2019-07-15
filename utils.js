@@ -11,9 +11,10 @@ var KlausMath = {
         // Real factorial just in case...
         else {
             var res = 1;
-            for (var i = 0; i < n; i++) {
+            for (var i = 1; i < n+1; i++) {
                 res = res * i;
             }
+            return res;
         }
     },
 
@@ -33,3 +34,5 @@ var KlausMath = {
         }
     }
 }
+
+module.exports = KlausMath;
