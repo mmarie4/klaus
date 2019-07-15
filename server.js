@@ -22,7 +22,7 @@ var stats = {};
 // Check authentication
 app.get('/auth', function(req, res) {
     if (req.query.pwd == PASSWORD) {
-        initAll();
+        launch();
         res.send( { status: 'OK' });
     } else {
         res.send( {status: 'error' } );
@@ -61,9 +61,6 @@ var initData = async function(league) {
           const file = dataset.resources[id]
           // Get a raw stream
           const stream = await file.stream();
-          stream.on('end', () => {
-            return updateAtkDef(league);
-          })
           const buffer = await file.buffer;
           stream.pipe(writeStream)
         }
@@ -136,21 +133,23 @@ var initAll = function() {
 }
 
 var computeStatsFromFiles = function() {
+  var new_stats = {};
   leagues.forEach(league => {
-    stats[league.name] = updateAtkDef(league);
+    new_stats[league.name] = updateAtkDef(league);
   })
+  return new_stats;
 }
 
-
+// Serve static folder and listen
+var launch = function() {
 // Get the data
 initAll();
-
 // Update stats from data
-/*
 setTimeout(function() {
     stats = computeStatsFromFiles(leagues)
   } , 10000);
-*/
-// Serve static folder and listen
+}
+
+launch();
 app.use(express.static('client-react/build'));
 app.listen(80);
