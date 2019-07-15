@@ -60,12 +60,14 @@ var initData = async function(league) {
           const writeStream = fs.createWriteStream('data/' + league.name + '-' + dataset.resources[id]._descriptor.name.replace('_', '.'));
           const file = dataset.resources[id]
           // Get a raw stream
-          const stream = await file.stream()
+          const stream = await file.stream();
+          stream.on('finish', () => {
+            return updateAtkDef(league);
+          })
           const buffer = await file.buffer;
           stream.pipe(writeStream)
         }
       }
-      return updateAtkDef(league);
 }
 
 
@@ -130,20 +132,25 @@ var updateAtkDef = function(league) {
 var initAll = function() {
   leagues.forEach(league => {
     stats[league.name] = initData(league);
-  })
+  });
 }
 
-var initAllFromFile = function() {
+var computeStatsFromFiles = function() {
   leagues.forEach(league => {
     stats[league.name] = updateAtkDef(league);
   })
 }
 
-/*
-// Update the dataset one time per day
+
+// Get the data
 initAll();
+
+// Update stats from data
+/*
+setTimeout(function() {
+    stats = computeStatsFromFiles(leagues)
+  } , 10000);
 */
-initAllFromFile();
 // Serve static folder and listen
 app.use(express.static('client-react/build'));
 app.listen(80);
