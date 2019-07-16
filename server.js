@@ -97,30 +97,29 @@ var countStatsFromFile = function(league, season) {
         teams[homeTeam].nbMatchHome++;
       } else {
         teams[homeTeam] = { goalsScoredHome: homeGoal, goalsTakenHome: awayGoal, nbMatchHome: 1 , goalsScoredAway: 0, goalsTakenAway: 0, nbMatchAway: 0 };
-        
-        // Count goals for awayTeam
-        if (teams.hasOwnProperty(awayTeam)) {
-          teams[awayTeam].goalsScoredAway += awayGoal;
-          teams[awayTeam].goalsTakenAway += homeGoal;
-          teams[awayTeam].nbMatchAway++;
-        } else {
-          teams[awayTeam] = { goalsScoredAway: awayGoal, goalsTakenAway: homeGoal, nbMatchAway: 1 , goalsScoredHome: 0, goalsTakenHome: 0, nbMatchHome: 0 };
-        }
       }
-      var leagueAvgHomeGoals = leagueHomeGoals / leagueJsonObj.length;
-      var leagueAvgAwayGoals = leagueAwayGoals / leagueJsonObj.length;
-      // Do averaging
-      for(name in teams) {
-        var team = teams[name];
-        //team.homeATK = (team.goalsScoredHome / team.nbMatchHome) * leagueAvgHomeGoals;
-        //team.awayATK = (team.goalsScoredAway / team.nbMatchAway) * leagueAvgAwayGoals;
-        team.homeATK = (team.goalsScoredHome / team.nbMatchHome);
-        team.awayATK = (team.goalsScoredAway / team.nbMatchAway);
-        team.homeDEF = team.goalsTakenHome / team.nbMatchHome;
-        team.awayDEF = team.goalsTakenAway / team.nbMatchAway;
+      // Count goals for awayTeam
+      if (teams.hasOwnProperty(awayTeam)) {
+        teams[awayTeam].goalsScoredAway += awayGoal;
+        teams[awayTeam].goalsTakenAway += homeGoal;
+        teams[awayTeam].nbMatchAway++;
+      } else {
+        teams[awayTeam] = { goalsScoredAway: awayGoal, goalsTakenAway: homeGoal, nbMatchAway: 1 , goalsScoredHome: 0, goalsTakenHome: 0, nbMatchHome: 0 };
       }
-      return teams;
     }
+    var leagueAvgHomeGoals = leagueHomeGoals / leagueJsonObj.length;
+    var leagueAvgAwayGoals = leagueAwayGoals / leagueJsonObj.length;
+    // Do averaging
+    for(name in teams) {
+      var team = teams[name];
+      //team.homeATK = (team.goalsScoredHome / team.nbMatchHome) * leagueAvgHomeGoals;
+      //team.awayATK = (team.goalsScoredAway / team.nbMatchAway) * leagueAvgAwayGoals;
+      team.homeATK = (team.goalsScoredHome / team.nbMatchHome);
+      team.awayATK = (team.goalsScoredAway / team.nbMatchAway);
+      team.homeDEF = team.goalsTakenHome / team.nbMatchHome;
+      team.awayDEF = team.goalsTakenAway / team.nbMatchAway;
+    }
+    return teams;
 }
 
 // Calculate the ATK and DEF for all teams
@@ -149,14 +148,14 @@ var computeStatsFromFiles = function() {
 
 // Serve static folder and listen
 var launch = function() {
-// Get the data
-initAll();
-// Update stats from data
-setTimeout(function() {
-    stats = computeStatsFromFiles(leagues)
-  } , 10000);
+  // Get the data
+  initAll();
+  // Update stats from data
+  setTimeout(function() {
+      stats = computeStatsFromFiles(leagues);
+    } , 10000);
 }
 
-//launch();
+launch();
 app.use(express.static('client-react/build'));
 app.listen(80);
