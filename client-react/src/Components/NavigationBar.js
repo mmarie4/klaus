@@ -39,6 +39,10 @@ export default class NavigationBar extends React.Component {
                 <label htmlFor='radio-premierleague'>Premier League</label>
                 <input type='radio' value='Bundesliga' name='league' id='radio-bundesliga' onChange={this.handleChange}/>
                 <label htmlFor='radio-bundesliga'>Bundesliga</label>
+                <input type='radio' value='SerieA' name='league' id='radio-serieA' onChange={this.handleChange}/>
+                <label htmlFor='radio-serieA'>Serie A</label>
+                <input type='radio' value='LaLiga' name='league' id='radio-laliga' onChange={this.handleChange}/>
+                <label htmlFor='radio-laliga'>La Liga</label>
             </div>
         )
     }

@@ -9,6 +9,8 @@ export default class TeamSelector extends React.Component {
         names['Ligue1'] = ['Amiens', 'Angers', 'Bordeaux', 'Brest', 'Dijon', 'Lille', 'Lyon', 'Marseille', 'Metz', 'Monaco', 'Montpellier', 'Nantes', 'Nice', 'Nîmes', 'Paris SG', 'Reims', 'Rennes', 'St Etienne', 'Strasbourg', 'Toulouse'];
         names['PremierLeague'] = ['Arsenal', 'Aston Villa', 'Bournemouth', 'Brighton', 'Burnley', 'Chelsea', 'Crystal Palace', 'Everton', 'Leicester', 'Liverpool', 'Man City', 'Man United', 'Newcastle', 'Norwich City', 'Sheffield United', 'Southampton', 'Tottenham', 'Watford', 'West Ham', 'Wolves'];
         names["Bundesliga"] = ['Leverkusen', 'Bayern Munich', 'Dortmund', 'Cologne', 'Ein Frankfurt', 'Augsburg', 'Fortuna Dusseldorf', 'Fribourg', 'Hertha', 'Hoffenheim', 'Mainz', 'M\'gladbach', 'Paderborn', 'RB Leibzig', 'Schalke 04', 'Union Berlin', 'Werder Bremen', 'Wolfsburg'];
+        names["SerieA"] = ['Atalanta', 'Bologna', 'Cagliari', 'Fiorentina', 'Genoa', 'Brescia', 'Hellas Verona', 'Inter', 'Juventus', 'Lazio', 'Lecce', 'Milan', 'Napoli', 'Parma', 'Roma', 'Sampdoria', 'Sassuolo', 'Spal', 'Torino', 'Udinese'];
+        names["LaLiga"] = ['Alaves', 'Ath Bilbao', 'Ath Madrid', 'Leganes', 'Barcelona', 'Celta', 'Eibar', 'Espanol', 'Getafe', 'Granada', 'Leganes', 'Levante', 'Mallorca', 'Osasuna', 'Betis', 'Real Madrid', 'Sociedad', 'Sevilla', 'Valencia', 'Valladolid', 'Villarreal'];
         names[this.props.league].forEach(team => teamNames.push(team));
         for (var i = 0; i < teamNames.length; i++) {
             options.push(<option key={i} value={teamNames[i]}>{teamNames[i]}</option>);

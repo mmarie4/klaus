@@ -85,7 +85,9 @@ label {
   font-family: 'Fugaz One';
   font-size: 1.5em;
   cursor: pointer;
-  margin: 20px;
+  margin: 3%;
+  text-align: center;
+  width: 19%;
 }
 
 /* ------------------- ResultWrapper --------------------------- */
@@ -276,7 +278,7 @@ option {
   }
 
   .nav-bar {
-    font-size: 0.6em;
+    font-size: 0.3em;
   }
 
   #popup {
@@ -291,6 +293,14 @@ option {
 
   #team2 {
     transform: translate(0, 150px) rotate(-90deg);
+  }
+
+  .primary-btn {
+    margin: 0;
+  }
+
+  .team-selector p {
+    font-size: 12px;
   }
 
 }
