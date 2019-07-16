@@ -120,6 +120,7 @@ var countStatsFromFile = function(league, season) {
         team.awayDEF = team.goalsTakenAway / team.nbMatchAway;
       }
       return teams;
+    }
 }
 
 // Calculate the ATK and DEF for all teams
