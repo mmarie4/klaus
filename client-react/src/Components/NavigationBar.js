@@ -19,7 +19,7 @@ export default class NavigationBar extends React.Component {
         this.props.setLeague({
             league: event.target.value,
             stats: [
-                ['Score', '0', '1', '2', '3', '4', '5'],
+                ['Goals', '0', '1', '2', '3', '4', '5'],
                 ['0', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
                 ['1', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
                 ['2', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],

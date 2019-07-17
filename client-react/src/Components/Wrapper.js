@@ -15,7 +15,7 @@ export default class Wrapper extends React.Component {
             league: '',
             isPopup: false,
             stats: [
-                ['Score', '0', '1', '2', '3', '4', '5'],
+                ['Goals', '0', '1', '2', '3', '4', '5'],
                 ['0', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
                 ['1', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
                 ['2', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %', '0.0 %'],
@@ -38,7 +38,7 @@ export default class Wrapper extends React.Component {
 
     updateGrid(new_stats) {
         var lines =  [];
-        lines.push(['Score', '0', '1', '2', '3', '4', '5']);
+        lines.push(['Goals', '0', '1', '2', '3', '4', '5']);
         for(var i = 0; i < new_stats.length; i++) {
             lines.push([i, new_stats[i][0], new_stats[i][1], new_stats[i][2], new_stats[i][3], new_stats[i][4], new_stats[i][5]]);
         }
@@ -56,6 +56,25 @@ export default class Wrapper extends React.Component {
         if(this.state.isPopup) return <Popup isPopup={this.isPopup} closePopup={this.closePopup} league={this.state.league}/>
     }
 
+    getLayout() {
+        console.log(window.innerWidth);
+        if(window.innerWidth < 768) {
+            return (
+                <div>
+                {this.displayWrapper()}
+                <GridStats stats={this.state.stats}/>
+                </div>
+            )
+        } else {
+          return (
+            <div className="flex-box">
+            {this.displayWrapper()}
+            <GridStats stats={this.state.stats}/>
+        </div>
+          )  
+        }
+    }
+
     render() {
         console.log(this.state);
         return(
@@ -63,9 +82,8 @@ export default class Wrapper extends React.Component {
                 <TitleBar/>
                 <NavigationBar setLeague={(state, callback) => this.setState(state, callback)}/>
                 <LockButton openPopup={this.openPopup}/>
-                {this.displayWrapper()}
+                {this.getLayout()}
                 {this.displayPopup()}
-                <GridStats stats={this.state.stats}/>
             </div>
         )
     }
