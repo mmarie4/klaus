@@ -46,10 +46,12 @@ export default class Wrapper extends React.Component {
     }
 
     openPopup() {
+        document.getElementById('black-screen').style.display = '';
         this.setState( { league: this.state.league, isPopup: true } );
     }
 
     closePopup() {
+        document.getElementById('black-screen').style.display = 'none';
         this.setState( { league: this.state.league, isPopup: false} );
     }
     displayPopup() {
@@ -79,6 +81,7 @@ export default class Wrapper extends React.Component {
         console.log(this.state);
         return(
             <div id='wrapper'>
+                <div id='black-screen' style={{display: 'none'}}></div>
                 <TitleBar/>
                 <NavigationBar setLeague={(state, callback) => this.setState(state, callback)}/>
                 <LockButton openPopup={this.openPopup}/>
