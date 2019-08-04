@@ -75,49 +75,51 @@ var initData = async function(league) {
 
 
 // Counts average goals for a league and a season, and counts avg goals for each team (when away and home)
-var countStatsFromFile = function(league, season) {
-    var data = fs.readFileSync('data/' + league.name + '-season-'+ season + '.json');
-    var leagueJsonObj = JSON.parse(data);
-    var leagueHomeGoals = 0;
-    var leagueAwayGoals = 0;
-    var teams = [];
-    // Get avg goals for whole league and count goals per team, number of match per team, and global stats for the league (goals from home team and away team)
-    for(var j = 0; j < leagueJsonObj.length; j++) {
-      var awayTeam = leagueJsonObj[j].AwayTeam;
-      var homeTeam = leagueJsonObj[j].HomeTeam;
-      var awayGoal = leagueJsonObj[j].FTAG;
-      var homeGoal = leagueJsonObj[j].FTHG;
-      // Count global league stats
-      leagueHomeGoals += homeGoal;
-      leagueAwayGoals += awayGoal;
-      // Count goals for homeTeam
-      if (teams.hasOwnProperty(homeTeam)) {
-        teams[homeTeam].goalsScoredHome += homeGoal;
-        teams[homeTeam].goalsTakenHome += awayGoal;
-        teams[homeTeam].nbMatchHome++;
-      } else {
-        teams[homeTeam] = { goalsScoredHome: homeGoal, goalsTakenHome: awayGoal, nbMatchHome: 1 , goalsScoredAway: 0, goalsTakenAway: 0, nbMatchAway: 0 };
+var countStatsFromFile = function(league, season, teams) {
+    var path = 'data/' + league.name + '-season-'+ season + '.json';
+    if(fs.existsSync(path)) {
+      var data = fs.readFileSync(path);
+      var leagueJsonObj = JSON.parse(data);
+      var leagueHomeGoals = 0;
+      var leagueAwayGoals = 0;
+      // Get avg goals for whole league and count goals per team, number of match per team, and global stats for the league (goals from home team and away team)
+      for(var j = 0; j < leagueJsonObj.length; j++) {
+        var awayTeam = leagueJsonObj[j].AwayTeam;
+        var homeTeam = leagueJsonObj[j].HomeTeam;
+        var awayGoal = leagueJsonObj[j].FTAG;
+        var homeGoal = leagueJsonObj[j].FTHG;
+        // Count global league stats
+        leagueHomeGoals += homeGoal;
+        leagueAwayGoals += awayGoal;
+        // Count goals for homeTeam
+        if (teams.hasOwnProperty(homeTeam)) {
+          teams[homeTeam].goalsScoredHome += homeGoal;
+          teams[homeTeam].goalsTakenHome += awayGoal;
+          teams[homeTeam].nbMatchHome++;
+        } else {
+          teams[homeTeam] = { goalsScoredHome: homeGoal, goalsTakenHome: awayGoal, nbMatchHome: 1 , goalsScoredAway: 0, goalsTakenAway: 0, nbMatchAway: 0 };
+        }
+        // Count goals for awayTeam
+        if (teams.hasOwnProperty(awayTeam)) {
+          teams[awayTeam].goalsScoredAway += awayGoal;
+          teams[awayTeam].goalsTakenAway += homeGoal;
+          teams[awayTeam].nbMatchAway++;
+        } else {
+          teams[awayTeam] = { goalsScoredAway: awayGoal, goalsTakenAway: homeGoal, nbMatchAway: 1 , goalsScoredHome: 0, goalsTakenHome: 0, nbMatchHome: 0 };
+        }
       }
-      // Count goals for awayTeam
-      if (teams.hasOwnProperty(awayTeam)) {
-        teams[awayTeam].goalsScoredAway += awayGoal;
-        teams[awayTeam].goalsTakenAway += homeGoal;
-        teams[awayTeam].nbMatchAway++;
-      } else {
-        teams[awayTeam] = { goalsScoredAway: awayGoal, goalsTakenAway: homeGoal, nbMatchAway: 1 , goalsScoredHome: 0, goalsTakenHome: 0, nbMatchHome: 0 };
+      var leagueAvgHomeGoals = leagueHomeGoals / leagueJsonObj.length;
+      var leagueAvgAwayGoals = leagueAwayGoals / leagueJsonObj.length;
+      // Do averaging
+      for(name in teams) {
+        var team = teams[name];
+        //team.homeATK = (team.goalsScoredHome / team.nbMatchHome) * leagueAvgHomeGoals;
+        //team.awayATK = (team.goalsScoredAway / team.nbMatchAway) * leagueAvgAwayGoals;
+        team.homeATK = (team.goalsScoredHome / team.nbMatchHome);
+        team.awayATK = (team.goalsScoredAway / team.nbMatchAway);
+        team.homeDEF = team.goalsTakenHome / team.nbMatchHome;
+        team.awayDEF = team.goalsTakenAway / team.nbMatchAway;
       }
-    }
-    var leagueAvgHomeGoals = leagueHomeGoals / leagueJsonObj.length;
-    var leagueAvgAwayGoals = leagueAwayGoals / leagueJsonObj.length;
-    // Do averaging
-    for(name in teams) {
-      var team = teams[name];
-      //team.homeATK = (team.goalsScoredHome / team.nbMatchHome) * leagueAvgHomeGoals;
-      //team.awayATK = (team.goalsScoredAway / team.nbMatchAway) * leagueAvgAwayGoals;
-      team.homeATK = (team.goalsScoredHome / team.nbMatchHome);
-      team.awayATK = (team.goalsScoredAway / team.nbMatchAway);
-      team.homeDEF = team.goalsTakenHome / team.nbMatchHome;
-      team.awayDEF = team.goalsTakenAway / team.nbMatchAway;
     }
     return teams;
 }
@@ -126,10 +128,10 @@ var countStatsFromFile = function(league, season) {
 var updateAtkDef = function(league) {
     console.log('[', league.name, '] : Calculate ATK and DEF...');
     
-    var stats1819 = countStatsFromFile(league, '1819');
-    //var stats1920 = countStatsFromFile(league, '1920');
+    var teams1819 = countStatsFromFile(league, '1819', {});
+    var teams1920 = countStatsFromFile(league, '1920', teams1819);
     
-    return stats1819;
+    return teams1920;
 }
 
 var initAll = function() {
