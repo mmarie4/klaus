@@ -161,7 +161,7 @@ var computeStatsFromFiles = function() {
 // Serve static folder and listen
 var launch = function() {
   // Get the data
-  //initAll();
+  initAll();
   // Update stats from data
   setTimeout(function() {
       stats = computeStatsFromFiles(leagues);
