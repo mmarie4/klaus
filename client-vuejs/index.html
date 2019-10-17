@@ -18,13 +18,16 @@
             <h1>Klaus</h1>
             <p>Betting becomes so easy</p>
         </div>
-
-        <div id="select-view">
-            <league-list :leagues=leagues></league-list>
-        </div>
-
-        <div id="probabilities-view">
-          <team-selector :league="currentLeague"></team-selector>
+        
+        <div id="content">
+          <div id="select-view">
+            <league-list :leagues=leagues :teams=teams></league-list>
+          </div>
+  
+          <div id="probabilities-view">
+            <league-title :league="currentLeague"></league-title>
+            <team-selector :current-league="currentLeague" :teams="teams"></team-selector>
+          </div>
         </div>
 
     </div>

@@ -1,0 +1,28 @@
+[Info  - 07:46:04] ESLint server stopped.
+[Info  - 07:46:17] ESLint server running in node v8.9.3
+[Info  - 07:46:17] ESLint server is running.
+[Info  - 07:46:40] 
+Failed to load the ESLint library for the document /data/Prog/Web/klaus/client-vuejs/js/main.js
+
+To use ESLint please install eslint by running 'npm install eslint' in the workspace folder klaus
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn instead of npm set the setting `"eslint.packageManager": "yarn"`
+
+Alternatively you can disable ESLint for the workspace folder klaus by executing the 'Disable ESLint' command.
+[Info  - 07:47:35] 
+Failed to load the ESLint library for the document /data/Prog/Web/klaus/server.js
+
+To use ESLint please install eslint by running 'npm install eslint' in the workspace folder klaus
+or globally using 'npm install -g eslint'. You need to reopen the workspace after installing eslint.
+
+If you are using yarn instead of npm set the setting `"eslint.packageManager": "yarn"`
+
+Alternatively you can disable ESLint for the workspace folder klaus by executing the 'Disable ESLint' command.
+[Info  - 08:39:54] ESLint library loaded from: /data/Prog/Web/klaus/client-react/node_modules/eslint/lib/api.js
+Warning: React version was set to "detect" in eslint-plugin-react settings, but the "react" package is not installed. Assuming latest React version for linting.
+Warning: React version was set to "detect" in eslint-plugin-react settings, but the "react" package is not installed. Assuming latest React version for linting.
+Warning: React version was set to "detect" in eslint-plugin-react settings, but the "react" package is not installed. Assuming latest React version for linting.
+Warning: React version was set to "detect" in eslint-plugin-react settings, but the "react" package is not installed. Assuming latest React version for linting.
+Warning: React version was set to "detect" in eslint-plugin-react settings, but the "react" package is not installed. Assuming latest React version for linting.
+Warning: React version was set to "detect" in eslint-plugin-react settings, but the "react" package is not installed. Assuming latest React version for linting.

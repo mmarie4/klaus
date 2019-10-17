@@ -14,6 +14,12 @@ body {
     margin: 0;
 }
 
+#content {
+    display: flex;
+    height: 90%;
+    width: 100%;
+}
+
 #title-bar {
     width: 100%;
     height: 10%;
@@ -34,7 +40,7 @@ p {
 }
 
 #select-view {
-    height: 90%;
+    height: 100%;
     margin: 0;
     display: inline-block;
 }
@@ -51,6 +57,7 @@ p {
 
 #league-list {
     height: 100%;
+    overflow: auto;
     margin: 0;
     display: inline-block;
     background: #050b30;
@@ -58,18 +65,33 @@ p {
 
 .league-select {
     height: 20%;
-    min-width: 100%;
     background: white;
     opacity: 0.5;
     text-align: center;
     cursor: pointer;
+    padding: 0px 10px;
 }
 
 .league-select img {
     height: 50%;
-    margin: 25%;
+    margin-top: 50%;
 }
 
 .league-select:hover {
     opacity: 1.0;
+}
+
+#probabilities-view {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+#probabilities-view p {
+    width: 100%;
+    display: inline-block;
+    font-size: 38px;
+    margin: 30px;
 }
