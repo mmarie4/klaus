@@ -52,6 +52,16 @@ app.get('/probabilities', function(req, res) {
     }
 });
 
+// Display home page
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+})
+app.get('/vuejs.png', function(req, res) {
+  res.sendFile(__dirname + '/vuejs.png');
+})
+app.get('/react.png', function(req, res) {
+  res.sendFile(__dirname + '/react.png');
+})
 
 // --------------------- Functions called periodically to update dataset and statistics ---------------------------
 // Init the dataset with all games
@@ -151,7 +161,7 @@ var computeStatsFromFiles = function() {
 // Serve static folder and listen
 var launch = function() {
   // Get the data
-  initAll();
+  //initAll();
   // Update stats from data
   setTimeout(function() {
       stats = computeStatsFromFiles(leagues);
@@ -159,5 +169,6 @@ var launch = function() {
 }
 
 launch();
-app.use(express.static('client-react/build'));
+app.use('/client-react', express.static('client-react/build'));
+app.use('/client-vuejs', express.static('client-vuejs'));
 app.listen(80);

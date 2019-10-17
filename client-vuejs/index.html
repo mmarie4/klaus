@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Klaus</title>
+  </head>
+
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+    <div id="app">
+
+        <div id="title-bar">
+            <h1>Klaus</h1>
+            <p>Betting becomes so easy</p>
+        </div>
+
+        <div id="select-view">
+            <league-list :leagues=leagues></league-list>
+        </div>
+
+        <div id="probabilities-view">
+          <team-selector :league="currentLeague"></team-selector>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+
+  </body>
+</html>

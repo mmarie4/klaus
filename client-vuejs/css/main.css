@@ -1,0 +1,75 @@
+html {
+    height: 100%;
+}
+
+#app {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#title-bar {
+    width: 100%;
+    height: 10%;
+    color: white;
+    background: #051264;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3em;
+}
+
+p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+#select-view {
+    height: 90%;
+    margin: 0;
+    display: inline-block;
+}
+
+#select-view p {
+    text-align: center;
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 1%;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+#league-list {
+    height: 100%;
+    margin: 0;
+    display: inline-block;
+    background: #050b30;
+}
+
+.league-select {
+    height: 20%;
+    min-width: 100%;
+    background: white;
+    opacity: 0.5;
+    text-align: center;
+    cursor: pointer;
+}
+
+.league-select img {
+    height: 50%;
+    margin: 25%;
+}
+
+.league-select:hover {
+    opacity: 1.0;
+}
