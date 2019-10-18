@@ -16,33 +16,36 @@ body {
 
 #content {
     display: flex;
-    height: 90%;
+    height: calc(100% - 80px);
     width: 100%;
 }
 
+/* -------------- title bar  -------------------- */
+
 #title-bar {
     width: 100%;
-    height: 10%;
+    height: 80px;
     color: white;
     background: #051264;
     text-align: center;
     overflow: hidden;
 }
 
-h1 {
+#title-bar h1 {
     margin: 0;
-    font-size: 3em;
+    font-size: 46px;
 }
 
-p {
+#title-bar p {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 15px;
 }
+
+/* -------------- select league view -------------------- */
 
 #select-view {
     height: 100%;
-    margin: 0;
-    display: inline-block;
+    margin: 0;  
 }
 
 #select-view p {
@@ -81,17 +84,56 @@ p {
     opacity: 1.0;
 }
 
+/* -------------- probabilities view -------------------- */
+
 #probabilities-view {
     height: 100%;
-    width: 100%;
     margin: 0;
-    display: inline-block;
+    width: 100%;
+    display: table;
+    border-spacing: 30px;
+    flex-grow: 1;
     text-align: center;
 }
 
-#probabilities-view p {
-    width: 100%;
+#league-title {
     display: inline-block;
     font-size: 38px;
-    margin: 30px;
+    margin-top: 2%;
+    margin-bottom: 0;
+}
+
+.probabilities-container {
+    width: 96%;
+    height: auto;
+    margin: 2%;
+    display: inline-block;
+    background: #051264;
+    display: table-row;
+}
+
+.team-selector {
+    display: inline-block;
+    width: 48%;
+    margin: 0.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background: white;
+}
+
+.team-side {
+    font-size: 25px;
+    margin: 0.5%;
+}
+
+select {
+    margin: 1%;
+    background: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#result-container  {
+    height: 100%;
+    color: white;
 }

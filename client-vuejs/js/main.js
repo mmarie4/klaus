@@ -32,16 +32,45 @@ Vue.component('league-title', {
     props: ['league'],
     template: 
         `
-        <p>{{ league }}</p>
+        <p id="league-title">{{ league }}</p>
         `
 })
 
-// League title
-Vue.component('team-selector', {
+// Team selector box
+Vue.component('selector-container', {
     props: ['teams', 'currentLeague'],
+    template:
+    `
+    <div id="selector-container" class="probabilities-container">
+        <team-selector :current-league="currentLeague" :teams="teams" :side="'Home'"></team-selector>
+        <team-selector :current-league="currentLeague" :teams="teams" :side="'Away'"></team-selector>
+    </div>
+    `
+})
+
+// team selector
+Vue.component('team-selector', {
+    props: ['teams', 'currentLeague', 'side'],
     template: 
         `
-        <p> {{ teams[currentLeague] }} </p>
+        <div class='team-selector'>
+            <p class="team-side"> {{ side }} </p>
+            <select>
+                <option :value='none'>Select a team...</option>
+                <option v-for="team in teams[currentLeague]" :value="team"> {{ team }} </option>
+            </select>
+        </div>
+        `
+})
+
+// Result container
+Vue.component('result-container', {
+    props: ['results'],
+    template: 
+        `
+        <div id="result-container" class="probabilities-container">
+            Here will be the result
+        </div>
         `
 })
 

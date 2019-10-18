@@ -454,5 +454,25 @@
             "label": "Ctrl+Shift+B",
             "isNative": true
         }
+    },
+    "windowsState": {
+        "openedWindows": [],
+        "lastActiveWindow": {
+            "folderUri": {
+                "$mid": 1,
+                "fsPath": "/data/Prog/Web/klaus",
+                "external": "file:///data/Prog/Web/klaus",
+                "path": "/data/Prog/Web/klaus",
+                "scheme": "file"
+            },
+            "backupPath": "/data/Prog/Web/klaus/Backups/45783dee1a168976717a6cddc6df1356",
+            "uiState": {
+                "mode": 1,
+                "x": 448,
+                "y": 188,
+                "width": 1024,
+                "height": 768
+            }
+        }
     }
 }
