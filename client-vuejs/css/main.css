@@ -89,9 +89,6 @@ body {
 #probabilities-view {
     height: 100%;
     margin: 0;
-    width: 100%;
-    display: table;
-    border-spacing: 30px;
     flex-grow: 1;
     text-align: center;
 }
@@ -105,11 +102,9 @@ body {
 
 .probabilities-container {
     width: 96%;
-    height: auto;
     margin: 2%;
     display: inline-block;
     background: #051264;
-    display: table-row;
 }
 
 .team-selector {
@@ -134,6 +129,5 @@ select {
 }
 
 #result-container  {
-    height: 100%;
     color: white;
 }
