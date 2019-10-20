@@ -5,13 +5,14 @@ Vue.component('league-select', {
     props: ['league'],
     template:
         `
-        <div class="league-select" @click='hideList()'>
+        <div class="league-select" @click='selectLeague()'>
             <img class="league-select-img" :src="'res/' + league + '.png'">
         </div>
         `,
     methods: {
-        hideList: function() {
-            this.$root.currentLeague = this.league; // Not working, the components are not re-rendered when we change the data --> need a router
+        selectLeague: function() {
+            this.$root.currentLeague = this.league;
+            this.$root.probabilities = "Choose teams to request results.";
         }
     }
 });
@@ -44,8 +45,20 @@ Vue.component('selector-container', {
     <div id="selector-container" class="probabilities-container">
         <team-selector :current-league="currentLeague" :teams="teams" :side="'Home'"></team-selector>
         <team-selector :current-league="currentLeague" :teams="teams" :side="'Away'"></team-selector>
+        <button id="request-button" @click="getProbabilities()">Get probabilities</button>
     </div>
-    `
+    `,
+    methods: {
+        getProbabilities: function() {
+            var homeTeam = document.getElementById('Home').options[document.getElementById('Home').selectedIndex].value;
+            var awayTeam = document.getElementById('Away').options[document.getElementById('Away').selectedIndex].value;
+            var that = this;
+            axios.get('http://localhost/probabilities?league=' + this.currentLeague + '&team1=' + homeTeam + '&team2=' + awayTeam).then(function(res) {
+                console.log('Requesting probabilities...');
+                that.$root.probabilities = res.data;
+            });
+        }
+    }
 })
 
 // team selector
@@ -55,7 +68,7 @@ Vue.component('team-selector', {
         `
         <div class='team-selector'>
             <p class="team-side"> {{ side }} </p>
-            <select>
+            <select :id="side">
                 <option :value='none'>Select a team...</option>
                 <option v-for="team in teams[currentLeague]" :value="team"> {{ team }} </option>
             </select>
@@ -69,7 +82,7 @@ Vue.component('result-container', {
     template: 
         `
         <div id="result-container" class="probabilities-container">
-            Here will be the result
+            <p>{{ results }}</p>
         </div>
         `
 })
@@ -87,6 +100,7 @@ var vm = new Vue({
             "SerieA": ['Atalanta', 'Bologna', 'Cagliari', 'Fiorentina', 'Genoa', 'Brescia', 'Hellas Verona', 'Inter', 'Juventus', 'Lazio', 'Lecce', 'Milan', 'Napoli', 'Parma', 'Roma', 'Sampdoria', 'Sassuolo', 'Spal', 'Torino', 'Udinese'],
             "LaLiga": ['Alaves', 'Ath Bilbao', 'Ath Madrid', 'Leganes', 'Barcelona', 'Celta', 'Eibar', 'Espanol', 'Getafe', 'Granada', 'Leganes', 'Levante', 'Mallorca', 'Osasuna', 'Betis', 'Real Madrid', 'Sociedad', 'Sevilla', 'Valencia', 'Valladolid', 'Villarreal']
         }, 
-        currentLeague: "Ligue1"
+        currentLeague: "Ligue1",
+        probabilities: "Choose teams to request results."
     }
 })
