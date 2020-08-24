@@ -199,5 +199,8 @@ var launch = function () {
 };
 
 launch();
+app.get("/", function (req, res) {
+  res.redirect("/client-react");
+});
 app.use("/client-react", express.static("client-react/build"));
 app.listen(80);
