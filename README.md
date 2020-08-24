@@ -6,9 +6,6 @@ Based on all results from season 18-19, using dataset from datahub.io, ATK and D
 Visit Klaus [here](http://51.38.68.118).
 
 
-__front__ : Two versions : 
-    - ReactJS application in folder client-react, served on _/client-react_
-    - Vue.js application in folder client-vuejs, served on _/client-vuejs_
-
+__front__ : ReactJS
 __back__ : NodeJS (Express). Serves statically the reactJS build folder, computes statistics and handles requests for probabilities.
 
